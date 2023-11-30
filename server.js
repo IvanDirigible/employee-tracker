@@ -1,5 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
+const inquirer = require('inquirer');
+const fs = require('fs');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -30,3 +32,16 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+inquirer
+    ,prompt([
+        {
+            type: 'list',
+            message: 'Please select from the following:',
+            name: 'main-menu',
+            choices: ['View All Departments', 'View All Roles', 'View All Employees', new inquirer.Separator(), 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role'],
+        },
+    ])
+    .then((data) => {
+
+    })
