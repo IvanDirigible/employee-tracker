@@ -1,13 +1,7 @@
-// const express = require('express');
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-// const fs = require('fs');
 
 const PORT = process.env.PORT || 3001;
-// const app = express();
-
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
 
 const db = mysql.createConnection(
     {
@@ -16,29 +10,16 @@ const db = mysql.createConnection(
         password: 'He@rt2<3',
         database: 'employee_db'
     },
-    console.log(`Connected to the employee database.`)
+    // Is this what's messing up my connection? No?
+    // console.log(`Connected to the employee database.`)
 );
-
-
-
-// db.query('SELECT * FROM employee', function (err, results) {
-//     console.log(results);
-// });
-
-// app.use((req, res) => {
-//     res.status(404).end();
-// });
-
-// app.listen(PORT, () => {
-//     console.log(`Server running on port ${PORT}`);
-// });
 
 const mainMenu = [
     {
         type: 'list',
         message: 'Please select from the following:',
         name: 'mainMenu',
-        choices: ['View All Departments', 'View All Roles', 'View All Employees', new inquirer.Separator(), 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role'],
+        choices: ['View All Departments', 'View All Roles', 'View All Employees', new inquirer.Separator(), 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role', new inquirer.Separator()],
     },
 ];
 
