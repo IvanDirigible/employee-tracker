@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const db = require('./db/connection');
+const { userInfo } = require('os');
 
 db.connect(err => {
     if (err) throw err;
@@ -31,6 +32,8 @@ const mainMenu = function() {
             viewEmployees();
         } if (userRes.main === 'Add a Department') {
             addDepartment();
+        } if (userRes.main === 'Add a Role') {
+            addRole();
         }
     })
 };
@@ -92,5 +95,40 @@ addDepartment = function() {
         }
         console.log(`Added ${userRes.departmentName} to the database`)
         mainMenu();
+    })
+};
+
+addRole = function() {
+    db.query(`SELECT * FROM department`, (err, res) => {
+        belongDepartment = res.map(belDep => ({
+            name: belDep.name,
+            value: belDep.id
+        }));
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'roleName',
+                message: 'What is the name of the role?'
+            },
+            {
+                type: 'input',
+                name: 'roleSalary',
+                message: 'What is the salary of the role?'
+            },
+            {
+                type: 'list',
+                name: 'roleDepartment',
+                message: 'Which department does the role belong to?',
+                choices: belongDepartment
+            }
+        ])
+        .then((userRes) => {
+            const addRole = `INSERT INTO role SET title = '${userRes.roleName}', salary = ${userRes.roleSalary}, department_id = ${userRes.roleDepartment};`
+            db.query(addRole), (err, res) => {
+                if (err) throw err;
+            }
+            console.log(`Added ${userRes.roleName} to the database`)
+            mainMenu();
+        })
     })
 };
