@@ -78,5 +78,19 @@ viewEmployees = function() {
 };
 
 addDepartment = function() {
-    db
-}
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'departmentName',
+            message: 'What is the name of the department?'
+        }
+    ])
+    .then((userRes) => {
+        const addDep = `INSERT INTO department(name) VALUES ('${userRes.departmentName}');`
+        db.query(addDep), (err, res) => {
+            if (err) throw err;
+        }
+        console.log(`Added ${userRes.departmentName} to the database`)
+        mainMenu();
+    })
+};
