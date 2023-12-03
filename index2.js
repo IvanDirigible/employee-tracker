@@ -34,6 +34,10 @@ const mainMenu = function() {
             addDepartment();
         } if (userRes.main === 'Add a Role') {
             addRole();
+        } if (userRes.main === 'Add an Employee') {
+            addEmployee();
+        } if (userRes.main === 'Update an Employee Role') {
+            updateRole();
         }
     })
 };
@@ -131,4 +135,55 @@ addRole = function() {
             mainMenu();
         })
     })
+};
+
+addEmployee = function() {
+    db.query(`SELECT * FROM role`, (err, res) => {
+        roleChoice = res.map(rolCho => ({
+            name: rolCho.title,
+            value: rolCho.id
+        }));
+    db.query(`SELECT * FROM employee`, (err, res) => {
+        managerChoice = [
+            {
+                name: 'None',
+                value: null
+            },
+            ...res.map(manCho => ({
+            name: `${manCho.first_name} ${manCho.last_name}`,
+            value: manCho.id
+        }))],
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'empFirstName',
+                message: "What is the employee's first name?"
+            },
+            {
+                type: 'input',
+                name: 'empLastName',
+                message: "What is the employee's last name?"
+            },
+            {
+                type: 'list',
+                name: 'empRole',
+                message: "What is the employee's role?",
+                choices: roleChoice
+            },
+            {
+                type: 'list',
+                name: 'empManager',
+                message: "Who is the employee's manager?",
+                choices: managerChoice
+            }
+        ])
+        .then((userRes) => {
+            const addEmployee = `INSERT INTO employee SET first_name = '${userRes.empFirstName}', last_name = '${userRes.empLastName}', role_id = ${userRes.empRole}, manager_id = ${userRes.empManager};`
+            db.query(addEmployee), (err, res) => {
+                if (err) throw err;
+            }
+            console.log(`Added ${userRes.empFirstName} ${userRes.empLastName} to the database`)
+            mainMenu();
+        })
+    })})
 };
