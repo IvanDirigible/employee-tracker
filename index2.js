@@ -18,8 +18,9 @@ const mainMenu = function() {
                             'View All Employees',new inquirer.Separator(),
                             'Add a Department',
                             'Add a Role',
-                            'Add an Employee',
-                            'Update an Employee Role', new inquirer.Separator()]
+                            'Add an Employee', new inquirer.Separator(),
+                            'Update an Employee Role', 
+                            'Update an Employee Manager', new inquirer.Separator()]
             }
         ])
     .then((userRes) => {
@@ -37,6 +38,8 @@ const mainMenu = function() {
             addEmployee();
         } if (userRes.main === 'Update an Employee Role') {
             updateRole();
+        } if (userRes.main === 'Update an Employee Manager') {
+            updateManager();
         }
     })
 };
@@ -220,4 +223,43 @@ updateRole = function() {
             mainMenu();
         })
     })})
-}
+};
+
+updateManager = function() {
+    db.query(`SELECT * FROM employee`, (err, res) => {
+        employeeChoice = [...res.map(empCho => ({
+            name: `${empCho.first_name} ${empCho.last_name}`,
+            value: empCho.id
+        }))],
+        managerChoice = [
+            {
+                name: 'None',
+                value: null
+            },
+            ...res.map(manCho => ({
+            name: `${manCho.first_name} ${manCho.last_name}`,
+            value: manCho.id
+        }))];
+        inquirer.prompt([
+            {
+                type: 'list',
+                name: 'updEmployee',
+                message: "Which employee’s manager would you like to update?",
+                choices: employeeChoice
+            },
+            {   type: 'list',
+                name: 'updManager',
+                message: 'Which manager do you want to assign the selected employee?',
+                choices: managerChoice
+            }
+        ])
+        .then((userRes) => {
+            const updateEmployee = `UPDATE employee SET manager_id = ${userRes.updManager} WHERE id = ${userRes.updEmployee};`
+            db.query(updateEmployee), (err, res) => {
+                if (err) throw err;
+            }
+            console.log(`Updated employee's manager`)
+            mainMenu();
+        })
+    })
+};
