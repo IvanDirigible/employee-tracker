@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const db = require('./db/connection');
-const { userInfo } = require('os');
 
 db.connect(err => {
     if (err) throw err;
@@ -139,10 +138,10 @@ addRole = function() {
 
 addEmployee = function() {
     db.query(`SELECT * FROM role`, (err, res) => {
-        roleChoice = res.map(rolCho => ({
+        roleChoice = [...res.map(rolCho => ({
             name: rolCho.title,
             value: rolCho.id
-        }));
+        }))];
     db.query(`SELECT * FROM employee`, (err, res) => {
         managerChoice = [
             {
@@ -152,7 +151,7 @@ addEmployee = function() {
             ...res.map(manCho => ({
             name: `${manCho.first_name} ${manCho.last_name}`,
             value: manCho.id
-        }))],
+        }))];
         inquirer.prompt([
             {
                 type: 'input',
@@ -187,3 +186,38 @@ addEmployee = function() {
         })
     })})
 };
+
+updateRole = function() {
+    db.query(`SELECT * FROM employee`, (err, res) => {
+        employeeChoice = [...res.map(empCho => ({
+            name: `${empCho.first_name} ${empCho.last_name}`,
+            value: empCho.id
+        }))];
+    db.query(`SELECT * FROM role`, (err, res) => {
+        roleChoice = [...res.map(rolCho => ({
+            name: rolCho.title,
+            value: rolCho.id
+        }))];
+        inquirer.prompt([
+            {
+                type: 'list',
+                name: 'updEmployee',
+                message: "Which employee’s role would you like to update?",
+                choices: employeeChoice
+            },
+            {   type: 'list',
+                name: 'updRole',
+                message: 'Which role do you want to assign the selected employee?',
+                choices: roleChoice
+            }
+        ])
+        .then((userRes) => {
+            const updateEmployee = `UPDATE employee SET role_id = ${userRes.updRole} WHERE id = ${userRes.updEmployee};`
+            db.query(updateEmployee), (err, res) => {
+                if (err) throw err;
+            }
+            console.log(`Updated employee's role`)
+            mainMenu();
+        })
+    })})
+}
