@@ -40,13 +40,13 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 The following video shows the application being used from the command line:
 
-[![A video shows the functionality of this command-line employee management application.](./Assets/12-sql-homework-video-thumbnail.png)](https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K)
+[![A video shows the functionality of this command-line employee management application.](./assets/12-sql-homework-video-screenshot.png)](https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K)
 
 ## Database Layout
 
 This database schema is designed as shown in the following image:
 
-![Database schema includes tables labeled “employee,” role,” and “department.”](./Assets/12-sql-homework-demo-01.png)
+![Database schema includes tables labeled “employee,” role,” and “department.”](./assets/12-sql-homework-demo-01.png)
 
 As the image illustrates, your schema should contain the following three tables:
 
