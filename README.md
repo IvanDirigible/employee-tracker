@@ -55,7 +55,7 @@ The following video shows the application being used from the command line:
 
 [![A video shows the functionality of this command-line employee management application.](./assets/12-sql-homework-video-screenshot.png)](https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K)
 
-If clicking the image above does not bring you to the video, you may copy this link ito your browser: https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K
+If clicking the image above does not bring you to the video, you may use this link or copy it into your browser: https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K
 
 
 ## Database Layout
