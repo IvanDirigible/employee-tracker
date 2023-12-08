@@ -1,13 +1,24 @@
 # 12 SQL: Employee Tracker
 
 ## The Task
-
 Developers frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called **content management systems (CMS)**. This week's assignment was to build a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL.
 
 Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
 
-## User Story
+## Table of Contents (Optional)
 
+If your README is long, add a table of contents to make it easy for users to find what they need.
+
+- [User Story](#user-story)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Tutorial Video](#tutorial-video)
+- [Database Layout](#database-layout)
+- [Features](#features)
+- [Installation](#installation)
+- [Credits](#credits)
+- [License](#license)
+  
+## User Story
 ```md
 AS A business owner
 I WANT to be able to view and manage the departments, roles, and employees in my company
@@ -15,7 +26,6 @@ SO THAT I can organize and plan my business
 ```
 
 ## Acceptance Criteria
-
 ```md
 GIVEN a command-line application that accepts user input
 WHEN I start the application
@@ -37,18 +47,18 @@ THEN I am prompted to select an employee to update and their new role and this i
 ```
 
 ## Tutorial Video
-
 The following video shows the application being used from the command line:
 
 [![A video shows the functionality of this command-line employee management application.](./assets/12-sql-homework-video-screenshot.png)](https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K)
 
-## Database Layout
+If clicking the video above does not bring you to the video, you may copy this link ito your browser: https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K
 
+## Database Layout
 This database schema is designed as shown in the following image:
 
 ![Database schema includes tables labeled “employee,” role,” and “department.”](./assets/12-sql-homework-demo-01.png)
 
-As the image illustrates, your schema should contain the following three tables:
+As the image illustrates, the schema contains the following three tables:
 
 * `department`
 
@@ -78,11 +88,27 @@ As the image illustrates, your schema should contain the following three tables:
 
     * `manager_id`: `INT` to hold reference to another employee that is the manager of the current employee (`null` if the employee has no manager)
 
-## Link to Live Deployed Application
-[A link to the live deployed application](***)
+## Features
+View All Departments, Roles, and Employees:
+- Users can view department names and IDs.  
+- Users can view job titles, role IDs, departments, and salaries for all roles.  
+- Users can view employee data: IDs, first names, last names, job titles, departments, salaries, and managers (if applicable).
+
+Add Department, Role, and Employee:  
+- Users can add a new department by entering the department name.  
+- Users can add a new role by entering the role name, salary, and selecting the department.  
+- Users can add a new employee by providing their first name, last name, role, and manager information.
+
+Update Employee's Role and Manager
+- Users can update an employee's role by selecting the employee and specifying the new role.
+- Users can update an employee's manager by selecting the employee and specifying either a new manager or none at all.
+
+### Future Features / Potentional Development
+- Sorting and viewing employees by manager or department
+- Functionality to delete departments, roles, and employees
+- Viewing the budget of each department based on combined employee salaries
 
 ## Installation
-
 <Note: You must have already created a mySQL account to use these installation methods.>
 To install the Employee Tracker, follow these steps:
 
@@ -124,26 +150,8 @@ To install the Employee Tracker, follow these steps:
     ```bash
     exit;  
 
-## Features
-
-View All Departments, Roles, and Employees:
-- Users can view department names and IDs.  
-- Users can view job titles, role IDs, departments, and salaries for all roles.  
-- Users can view employee data: IDs, first names, last names, job titles, departments, salaries, and managers (if applicable).
-
-Add Department, Role, and Employee:  
-- Users can add a new department by entering the department name.  
-- Users can add a new role by entering the role name, salary, and selecting the department.  
-- Users can add a new employee by providing their first name, last name, role, and manager information.
-
-Update Employee's Role and Manager
-- Users can update an employee's role by selecting the employee and specifying the new role.
-- Users can update an employee's manager by selecting the employee and specifying either a new manager or none at all.
-
-### Future Features / Potentional Development
-- Sorting and viewing employees by manager or department
-- Functionality to delete departments, roles, and employees
-- Viewing the budget of each department based on combined employee salaries
+## Credits
+Shout out to Chris for helping me with figuring out the spread operator, and with putting bash commands in this README file.
 
 ## License
 This project is licensed under the MIT license.  
