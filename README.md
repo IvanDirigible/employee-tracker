@@ -156,7 +156,7 @@ To install the Employee Tracker, follow these steps:
 
 
 ## Credits
-Shout out to Chris for helping me with figuring out the spread operator, and with putting bash commands in this README file.
+Shout out to Chris for helping me with figuring out the spread operator, and with how to put bash commands in this README file.
 
 
 ## License
