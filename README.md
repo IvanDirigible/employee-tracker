@@ -5,7 +5,8 @@ Developers frequently have to create interfaces that allow non-developers to eas
 
 Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
 
-## Table of Contents (Optional)
+
+## Table of Contents
 
 If your README is long, add a table of contents to make it easy for users to find what they need.
 
@@ -17,6 +18,7 @@ If your README is long, add a table of contents to make it easy for users to fin
 - [Installation](#installation)
 - [Credits](#credits)
 - [License](#license)
+
   
 ## User Story
 ```md
@@ -24,6 +26,7 @@ AS A business owner
 I WANT to be able to view and manage the departments, roles, and employees in my company
 SO THAT I can organize and plan my business
 ```
+
 
 ## Acceptance Criteria
 ```md
@@ -46,12 +49,14 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
 
+
 ## Tutorial Video
 The following video shows the application being used from the command line:
 
 [![A video shows the functionality of this command-line employee management application.](./assets/12-sql-homework-video-screenshot.png)](https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K)
 
-If clicking the video above does not bring you to the video, you may copy this link ito your browser: https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K
+If clicking the image above does not bring you to the video, you may copy this link ito your browser: https://watch.screencastify.com/v/Trh2EbqtXUcq7RbK2I6K
+
 
 ## Database Layout
 This database schema is designed as shown in the following image:
@@ -88,6 +93,7 @@ As the image illustrates, the schema contains the following three tables:
 
     * `manager_id`: `INT` to hold reference to another employee that is the manager of the current employee (`null` if the employee has no manager)
 
+
 ## Features
 View All Departments, Roles, and Employees:
 - Users can view department names and IDs.  
@@ -107,6 +113,7 @@ Update Employee's Role and Manager
 - Sorting and viewing employees by manager or department
 - Functionality to delete departments, roles, and employees
 - Viewing the budget of each department based on combined employee salaries
+
 
 ## Installation
 <Note: You must have already created a mySQL account to use these installation methods.>
@@ -150,8 +157,10 @@ To install the Employee Tracker, follow these steps:
     ```bash
     exit;  
 
+
 ## Credits
 Shout out to Chris for helping me with figuring out the spread operator, and with putting bash commands in this README file.
+
 
 ## License
 This project is licensed under the MIT license.  
